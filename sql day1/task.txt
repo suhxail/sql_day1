@@ -1,0 +1,48 @@
+show databases;
+use movie;
+
+create table movies(movieId int primary key, title varchar(50) , mediaType varchar(20));
+desc movies;
+
+
+create table genre(genreId int primary key, genre varchar(25));
+desc genre;
+
+
+create table movie_genre(movieId int , genreId int , foreign key(movieId) references movies(movieId), foreign key(genreId) references genre(genreId));
+desc movie_genre;
+
+
+create table reviews(userId int, movieId int, review varchar(255), foreign key (movieId) references movies(movieId));
+desc reviews;
+
+
+create table artists(artistId int primary key, skills varchar(20));
+desc artists;
+
+
+create table casting(artistId int, movieId int, role varchar(30), foreign key (artistId) references artists(artistId), foreign key (movieId) references movies(movieId));
+desc casting
+
+
+insert into movies(movieId,title,mediaType) values (1,'movie1','video'), (2,'movie2','image'), (3,'movie3','video');
+select * from movies;
+
+
+insert into genre (genreId,genre) values (1,'comedy'), (2,'action'), (3,'thriller'), (4,'adventure'), (5,'horror'), (6,'fiction');
+select * from genre;
+
+
+insert into reviews(userId , movieId, review) values (1,1,'good'), (1,2,'average'), (2,3,'below average'),(3,1,'good'),(3,3,'good');
+select * from reviews;
+
+
+insert into artists(artistId,skills) values (1,'actor,singer'), (2,'actor,lyric writer'), (3,'actor,choreographer');
+select * from artists;
+
+
+insert into casting (artistId,movieId,role) values (1,1,'hero'), (1,2,'Villain'), (2,3,'comedian'), (2,1,'villain'), (3,1,'comedian'),(3,2,'hero');
+select * from casting
+
+
+
